@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight, BookOpen, Heart, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
 import Book3D from "./Book3D";
 import { Stars } from "./ui";
 
@@ -14,7 +15,7 @@ const fadeUp = {
 
 export default function Hero() {
   return (
-    <section id="inicio" className="relative overflow-hidden pt-32 pb-20 sm:pt-40 lg:pb-28">
+    <section id="inicio" className="relative overflow-hidden min-h-[100dvh] flex flex-col justify-center pt-20 pb-10">
       {/* ambiente */}
       <div className="pointer-events-none absolute inset-0" aria-hidden>
         <div className="glow-warm animate-drift absolute -top-40 right-[8%] h-[560px] w-[560px] rounded-full" />
@@ -22,12 +23,11 @@ export default function Hero() {
         <div className="glow-sage animate-pulse-soft absolute right-[-10%] bottom-[-20%] h-[480px] w-[480px] rounded-full" />
       </div>
 
-      <div className="relative mx-auto grid max-w-7xl items-center gap-16 px-5 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8">
+      <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 sm:gap-16 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8">
         {/* coluna de texto */}
-        <div className="text-center lg:text-left">
+        <div className="w-[351px] pl-0 pr-[18px] pb-[1px] pt-0 -ml-[3px] text-center lg:text-left">
           <motion.div variants={fadeUp} initial="hidden" animate="show" custom={0}>
             <span className="inline-flex items-center gap-2 rounded-full border border-brick/20 bg-white/60 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-brick-deep shadow-sm backdrop-blur">
-              <Sparkles size={13} className="text-gold" />
               Lançamento · Uma história real
             </span>
           </motion.div>
@@ -37,7 +37,7 @@ export default function Hero() {
             initial="hidden"
             animate="show"
             custom={0.12}
-            className="mt-7 font-display text-[2.65rem] leading-[1.04] font-medium tracking-tight text-balance text-ink sm:text-6xl lg:text-[4.2rem]"
+            className="mt-7 font-display text-4xl leading-[1.04] font-medium tracking-tight text-balance text-ink sm:text-5xl lg:text-[4.2rem]"
           >
             Quando as paredes caem,{" "}
             <span className="relative inline-block">
@@ -65,12 +65,22 @@ export default function Hero() {
             initial="hidden"
             animate="show"
             custom={0.24}
-            className="mx-auto mt-7 max-w-xl text-base leading-relaxed text-ink-2 sm:text-lg lg:mx-0"
+            className="mx-auto max-w-xl leading-relaxed text-ink-2 sm:text-lg lg:mx-0 text-center text-[15px] mt-[30px] pl-[7px] pr-0"
           >
             O relato corajoso de <strong className="font-semibold text-ink">Maria Salles</strong>:
             25 anos de silêncio dentro de um casamento, a vertigem de recomeçar aos 45 e o amor
             que nasceu de um simples <em className="font-display">“Boa Noite”</em> — às 1h47 de uma
             madrugada de outubro.
+          </motion.p>
+
+          <motion.p
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            custom={0.30}
+            className="mx-auto mt-5 max-w-xl text-[14px] leading-relaxed text-ink-3 sm:text-[15px] lg:mx-0 border-l-2 border-brick/40 pl-4 italic"
+          >
+            Uma obra, escrita no exato momento em que a vida acontece. Cada capítulo nasce da percepção do <strong className="font-semibold text-ink-2">“Até amanhã”</strong>, transformando experiências em reflexões. Mais do que um relato, é um registro da jornada de autoconhecimento, da busca pela consciência e da construção de clareza sobre os caminhos que ainda estão por vir.
           </motion.p>
 
           <motion.div
@@ -80,20 +90,13 @@ export default function Hero() {
             custom={0.36}
             className="mt-9 flex flex-col items-center gap-3.5 sm:flex-row lg:justify-start sm:justify-center"
           >
-            <a
-              href="#edicoes"
+            <Link
+              to="/leitura"
               className="btn-shine focus-ring group relative inline-flex w-full items-center justify-center gap-2.5 overflow-hidden rounded-full bg-gradient-to-r from-brick-deep via-brick to-flame px-8 py-4 text-[15px] font-semibold text-paper shadow-xl shadow-brick/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-brick/40 sm:w-auto"
             >
-              Quero o meu livro
-              <ArrowRight size={17} className="transition-transform duration-300 group-hover:translate-x-1" />
-            </a>
-            <a
-              href="#capitulos"
-              className="focus-ring group inline-flex w-full items-center justify-center gap-2.5 rounded-full border border-ink/15 bg-white/50 px-8 py-4 text-[15px] font-semibold text-ink backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:border-brick/40 hover:bg-white/80 sm:w-auto"
-            >
-              <BookOpen size={17} className="text-brick transition-transform duration-300 group-hover:-rotate-6" />
-              Ler um trecho
-            </a>
+              <BookOpen size={17} className="transition-transform duration-300 group-hover:-rotate-6" />
+              Ler livro
+            </Link>
           </motion.div>
 
           <motion.div

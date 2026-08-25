@@ -1,0 +1,6 @@
+{
+  "name": "Além das Muralhas",
+  "description": "Além das Muralhas: O Peso de 25 Anos e o Recomeço — relato real e livro de Maria Salles.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

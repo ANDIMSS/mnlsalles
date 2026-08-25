@@ -1,21 +1,22 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Menu, X } from "lucide-react";
+import { ArrowRight, BookOpen, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { cn } from "../utils/cn";
 import { LogoMark } from "./ui";
 
 const LINKS = [
-  { href: "#livro", label: "O Livro" },
-  { href: "#capitulos", label: "Capítulos" },
-  { href: "#autora", label: "A Autora" },
-  { href: "#depoimentos", label: "Depoimentos" },
-  { href: "#edicoes", label: "Edições" },
-  { href: "#faq", label: "FAQ" },
+  { href: "/#livro", label: "O Livro" },
+  { href: "/#capitulos", label: "Capítulos" },
+  { href: "/#autora", label: "A Autora" },
+  { href: "/#depoimentos", label: "Depoimentos" },
+  { href: "/#faq", label: "FAQ" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -23,6 +24,18 @@ export default function Navbar() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // Handle hash scrolling
+  useEffect(() => {
+    if (location.hash) {
+      const el = document.querySelector(location.hash);
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  }, [location]);
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
@@ -41,9 +54,9 @@ export default function Navbar() {
               : "border border-transparent bg-transparent"
           )}
         >
-          <a href="#inicio" className="focus-ring shrink-0" aria-label="Ir para o início">
+          <Link to="/" className="focus-ring shrink-0" aria-label="Ir para o início">
             <LogoMark />
-          </a>
+          </Link>
 
           <ul className="hidden items-center gap-1 lg:flex">
             {LINKS.map((l) => (
@@ -60,13 +73,13 @@ export default function Navbar() {
           </ul>
 
           <div className="flex items-center gap-2.5">
-            <a
-              href="#edicoes"
+            <Link
+              to="/leitura"
               className="btn-shine focus-ring group relative hidden items-center gap-2 overflow-hidden rounded-full bg-ink px-5 py-2.5 text-[13px] font-semibold text-paper shadow-lg shadow-ink/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-ink/30 sm:inline-flex"
             >
-              Comprar agora
-              <ArrowRight size={15} className="transition-transform duration-300 group-hover:translate-x-0.5" />
-            </a>
+              Ler Online
+              <BookOpen size={15} className="transition-transform duration-300 group-hover:scale-110" />
+            </Link>
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
@@ -106,14 +119,21 @@ export default function Navbar() {
                     </a>
                   </motion.li>
                 ))}
+                <motion.li
+                  initial={{ opacity: 0, x: -14 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.05 + LINKS.length * 0.045 }}
+                >
+                  <Link
+                    to="/leitura"
+                    onClick={() => setOpen(false)}
+                    className="focus-ring flex items-center justify-between rounded-xl px-4 py-3.5 text-[15px] font-medium text-brick transition-colors hover:bg-brick/10"
+                  >
+                    Ler Online
+                    <BookOpen size={15} />
+                  </Link>
+                </motion.li>
               </ul>
-              <a
-                href="#edicoes"
-                onClick={() => setOpen(false)}
-                className="mt-2 flex items-center justify-center gap-2 rounded-xl bg-ink px-4 py-3.5 text-[14px] font-semibold text-paper"
-              >
-                Comprar agora <ArrowRight size={15} />
-              </a>
             </motion.div>
           )}
         </AnimatePresence>

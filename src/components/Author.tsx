@@ -4,7 +4,7 @@ import { Reveal, SectionHeading } from "./ui";
 const CHIPS = [
   { icon: Users, label: "Mãe de três — porto seguro e estrutura" },
   { icon: ShieldCheck, label: "Voz contra o abuso emocional" },
-  { icon: Heart, label: "Recomeçou aos 45 — e floresceu" },
+  { icon: Heart, label: "Recomeçou aos 40 — e floresceu" },
 ];
 
 export default function Author() {
@@ -29,8 +29,8 @@ export default function Author() {
               <div className="absolute -inset-3 -rotate-2 rounded-[2rem] border border-brick/25 transition-transform duration-700 group-hover:-rotate-3" aria-hidden />
               <div className="relative overflow-hidden rounded-[1.75rem] shadow-2xl shadow-ink/30">
                 <img
-                  src="https://images.pexels.com/photos/36625054/pexels-photo-36625054.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800"
-                  alt="Retrato editorial de Maria Salles, autora do livro, sorrindo com serenidade junto a uma janela"
+                  src="https://assets.zyrosite.com/EdFKTcLdQSxzGH5L/maria-salles-2UwkT2Dv0FQfIBap.jpeg"
+                  alt="Retrato de Maria Salles, autora do livro"
                   className="aspect-[4/5] w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   loading="lazy"
                 />
@@ -38,7 +38,7 @@ export default function Author() {
                 <div className="absolute bottom-0 left-0 p-6">
                   <p className="font-display text-2xl font-semibold text-paper italic">Maria Salles</p>
                   <p className="mt-1 text-[11px] font-bold uppercase tracking-[0.24em] text-gold-soft">
-                    Escritora · 47 anos
+                    Escritora · 46 anos
                   </p>
                 </div>
               </div>

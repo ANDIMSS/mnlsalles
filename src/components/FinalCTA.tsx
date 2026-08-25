@@ -44,16 +44,12 @@ export default function FinalCTA() {
           <Reveal delay={0.24}>
             <div className="mt-9 flex flex-col items-center gap-4 sm:flex-row lg:justify-start sm:justify-center">
               <a
-                href="#edicoes"
+                href="#capitulos"
                 className="btn-shine focus-ring group relative inline-flex w-full items-center justify-center gap-2.5 overflow-hidden rounded-full bg-gradient-to-r from-gold to-flame px-9 py-4.5 text-[15.5px] font-bold text-night shadow-2xl shadow-gold/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-gold/50 sm:w-auto"
               >
                 Começar o meu recomeço
                 <ArrowRight size={17} className="transition-transform duration-300 group-hover:translate-x-1" />
               </a>
-              <span className="inline-flex items-center gap-2 text-[12.5px] font-medium text-paper/55">
-                <ShieldCheck size={15} className="text-sage" />
-                Garantia incondicional de 7 dias
-              </span>
             </div>
           </Reveal>
         </div>

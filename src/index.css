@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @theme {
   --font-display: "Fraunces", Georgia, "Times New Roman", serif;
@@ -21,6 +22,34 @@
   --color-sage-deep: #2f463a;
   --color-night: #161211;
   --color-night-2: #211a15;
+}
+
+/* =============================================
+   Scroll — Reveal GSAP
+   Estado inicial dos elementos animados.
+   GSAP transiciona de opacity:0 para opacity:1.
+   ============================================= */
+
+/* ---- Estado inicial: invisível ---- */
+[data-anim] {
+  opacity: 0;
+}
+
+/* ---- Estado final: visível (adicionado via JS) ---- */
+[data-anim].sr-visible {
+  opacity: 1;
+}
+
+/* ---- Fallback: se JS não carregar, mostrar tudo ---- */
+.no-js [data-anim] {
+  opacity: 1 !important;
+}
+
+/* ---- Reduced motion: mostrar tudo imediatamente ---- */
+@media (prefers-reduced-motion: reduce) {
+  [data-anim] {
+    opacity: 1 !important;
+  }
 }
 
 html {
@@ -111,6 +140,27 @@ body {
   animation-play-state: paused;
 }
 
+@keyframes marquee-vertical {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
+}
+.animate-marquee-vertical {
+  animation: marquee-vertical 46s linear infinite;
+}
+
+@keyframes marquee-vertical-reverse {
+  from { transform: translateY(-50%); }
+  to { transform: translateY(0); }
+}
+.animate-marquee-vertical-reverse {
+  animation: marquee-vertical-reverse 46s linear infinite;
+}
+
+.marquee-paused-vertical:hover .animate-marquee-vertical,
+.marquee-paused-vertical:hover .animate-marquee-vertical-reverse {
+  animation-play-state: paused;
+}
+
 @keyframes shine {
   0% { transform: translateX(-120%) skewX(-18deg); }
   60%, 100% { transform: translateX(240%) skewX(-18deg); }
@@ -172,7 +222,7 @@ body {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .animate-floaty, .animate-floaty-slow, .animate-drift, .animate-drift-2,
-  .animate-marquee, .animate-pulse-soft {
+  .animate-marquee, .animate-marquee-vertical, .animate-marquee-vertical-reverse, .animate-pulse-soft {
     animation: none !important;
   }
 }

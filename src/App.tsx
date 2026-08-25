@@ -1,8 +1,10 @@
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { ArrowRight, Book } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Author from "./components/Author";
 import Benefits from "./components/Benefits";
+import BookReader from "./components/BookReader";
 import Chapters from "./components/Chapters";
 import FAQ from "./components/FAQ";
 import FinalCTA from "./components/FinalCTA";
@@ -10,11 +12,11 @@ import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import Letter from "./components/Letter";
 import Navbar from "./components/Navbar";
-import Pricing from "./components/Pricing";
 import Showcase from "./components/Showcase";
 import SocialProof from "./components/SocialProof";
 import Synopsis from "./components/Synopsis";
 import Testimonials from "./components/Testimonials";
+import { initScrollReveals } from "./lib/scrollRevealGSAP";
 
 /* Barra fixa de conversão para mobile */
 function StickyBuyBar() {
@@ -47,10 +49,10 @@ function StickyBuyBar() {
               </span>
             </div>
             <a
-              href="#edicoes"
+              href="#capitulos"
               className="focus-ring inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-gold to-flame px-5 py-2.5 text-[13px] font-bold text-night shadow-lg shadow-gold/25"
             >
-              Comprar
+              Conhecer
               <ArrowRight size={14} />
             </a>
           </div>
@@ -60,10 +62,13 @@ function StickyBuyBar() {
   );
 }
 
-export default function App() {
+function LandingPage() {
+  useEffect(() => {
+    initScrollReveals();
+  }, []);
+
   return (
-    <div className="grain relative min-h-screen bg-paper font-sans text-ink antialiased">
-      <Navbar />
+    <>
       <main>
         <Hero />
         <SocialProof />
@@ -74,12 +79,24 @@ export default function App() {
         <Letter />
         <Author />
         <Testimonials />
-        <Pricing />
         <FAQ />
         <FinalCTA />
       </main>
-      <Footer />
-      <StickyBuyBar />
-    </div>
+    </>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <div className="grain relative min-h-screen overflow-x-hidden bg-paper font-sans text-ink antialiased">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/leitura" element={<BookReader />} />
+        </Routes>
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
